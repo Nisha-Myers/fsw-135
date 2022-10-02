@@ -1,0 +1,9 @@
+import React from 'react'
+
+const Articles = () => {
+  return (
+    <div>Welcome to the articles section...</div>
+  )
+}
+
+export default Articles
