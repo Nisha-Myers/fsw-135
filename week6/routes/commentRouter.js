@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken")
 
 
 
-// Get All Comments 
+// get all comments 
 commentRouter.get("/", (req, res, next) => {
     Comment.find((err, comments) => {
         if(err){
@@ -18,7 +18,7 @@ commentRouter.get("/", (req, res, next) => {
 });
 
 
-// Get Comments by user Id
+// get comments by user Id
 commentRouter.get("/user", (req, res, next) => {
     Comment.find({ user: req.user._id }, (err, comments) => {
         if(err){
@@ -30,7 +30,7 @@ commentRouter.get("/user", (req, res, next) => {
 });
 
 
-// Add new Comment
+// add new comment
 commentRouter.post("/", (req, res, next) => {
     req.body.user = req.user._id
     const newComment = new Comment(req.body)
@@ -44,7 +44,7 @@ commentRouter.post("/", (req, res, next) => {
 });
 
 
-//Delete Comment
+//delete comment
 commentRouter.delete("/:commentID", (req, res, next) => {
     Comment.findOneAndDelete(
         {_id: req.params.commentID, user: req.user._id},
@@ -59,7 +59,7 @@ commentRouter.delete("/:commentID", (req, res, next) => {
 });
 
 
-//Update Comment
+//update comment
 commentRouter.put("/:commentID", (req, res, next) => {
     Comment.findOneAndUpdate(
         { _id: req.params.commentID, user: req.user._id },
@@ -74,5 +74,8 @@ commentRouter.put("/:commentID", (req, res, next) => {
         }
     )
 });
+
+
+
 
 module.exports = commentRouter
